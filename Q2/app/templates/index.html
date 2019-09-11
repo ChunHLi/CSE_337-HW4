@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Enter Text to Perform Operation on</h1>
+    <form method="POST" action="/">
+        {{ form.csrf_token }}
+        <p>
+            {{ form.text.label }}<br>
+            {{ form.text(cols="100", rows="30") }}<br>
+            {% for error in form.text.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.delimiter.label }}<br>
+            {{ form.delimiter(cols="100", rows="0") }}<br>
+            {% for error in form.delimiter.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.operationname.label }}<br>
+            {{ form.operationname}}
+        </p>
+        <p>{{ form.submit() }}</p>
+        {% if form.errors %}
+        {{ form.errors }}
+        {% endif %}
+    </form>
+{% endblock %}
